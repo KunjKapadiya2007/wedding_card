@@ -47,6 +47,10 @@ function Trending() {
                             objectFit: "cover",
                             "&:hover .topimage": {
                                 transform: "scale(1.1)",
+                            },
+                            "&:hover .brunch": {
+                                mx:0,
+                                px:0
                             }
                         }}
                     >
@@ -80,15 +84,15 @@ function Trending() {
                                 position: "absolute",
                                 width: "100%",
                                 bottom: 0,
-                                maxWidth: "418px",
+                                maxWidth: "440px",
                                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
                                 zIndex: 999,
                             }}
                         >
-                            <Box sx={{ fontSize: "21px", fontWeight: "500" }}>
+                            <Box className={"brunch"} sx={{ fontSize: "21px", fontWeight: "500" , px:1 ,transition: "all 0.4s ease-in-out",  }}>
                                 {item.label}
                             </Box>
-                            <Box
+                            <Box className={"brunch"}
                                 sx={{
                                     background: "#9C27B0",
                                     borderRadius: "50%",
@@ -98,6 +102,8 @@ function Trending() {
                                     alignItems: "center",
                                     justifyContent: "center",
                                     boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                                    mx:1,
+                                    transition: "all 0.4s ease-in-out",
                                 }}
                             >
                                 <StarIcon sx={{ color: "white", fontSize: "18px" }} />

@@ -26,6 +26,7 @@ function App() {
       <Footer />
       <TemplatePage />
       <Invitation />
+        {/*<TemplatePage />*/}
       {/*  <Favorites/>*/}
     </>
   )
