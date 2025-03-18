@@ -9,6 +9,7 @@ import Inspirations from "./pages/HomePage/inspirations.jsx";
 import Footer from './components/global/Footer'
 import Navbar from './components/global/navbar'
 import Favorites from "./pages/myprofile/favorites.jsx";
+import TemplatePage from "./pages/templatePage.jsx";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Shares/>
         <Inspirations/>
       <Footer />
+        <TemplatePage />
       {/*  <Favorites/>*/}
     </>
   )
