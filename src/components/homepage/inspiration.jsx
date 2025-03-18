@@ -76,7 +76,7 @@ function Inspiration() {
                     variant="contained"
                     sx={{
                         mt: 4,
-                        backgroundColor: "#00C853",
+                        backgroundColor: "#18B071",
                         color: "white",
                         borderRadius: "20px",
                         px: 4,

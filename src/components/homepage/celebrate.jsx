@@ -28,7 +28,7 @@ function Celebrate() {
         <Container maxWidth="lg">
             <Box
                 sx={{
-                    background: "#F8F9FA",
+                    background: "#F4F4F4",
                     borderRadius: "50px",
                     py: 6,
                     textAlign: "center",
@@ -62,27 +62,31 @@ function Celebrate() {
                 <Grid container spacing={2} justifyContent="center">
                     {buttons.map((btn, idx) => (
                         <Grid item xs={12} sm={4} key={idx} display="flex" justifyContent="center">
-                            <Button
+                            <Box
                                 variant="contained"
                                 sx={{
-                                    background: "#F5F5F5",
+                                    background: "#FFFFFF",
                                     color: "black",
                                     borderRadius: "50px",
-                                    px: 3,
-                                    py: 1.5,
+                                    py:"16px",
+                                    paddingLeft:"28px",
+                                    paddingRight:"20px",
                                     display: "flex",
                                     alignItems: "center",
                                     justifyContent: "space-between",
-                                    fontWeight: "500",
-                                    fontSize: "16px",
-                                    textTransform: "none",
-                                    "&:hover": { background: "#E0E0E0" },
-                                    width: "260px",
+                                    width: "320px",
+                                    fontWeight: 500,
+                                    fontSize:"21px",
+                                    cursor: "pointer",
+                                    transition: "all 0.2s ease-in-out",
+                                    "&:hover": {
+                                        paddingRight:"15px",
+                                        paddingLeft:"20px",
+                                    },
                                 }}
-                                endIcon={btn.icon}
                             >
-                                {btn.label}
-                            </Button>
+                                {btn.label}{btn.icon}
+                            </Box>
                         </Grid>
                     ))}
                 </Grid>

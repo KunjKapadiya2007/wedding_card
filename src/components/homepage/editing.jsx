@@ -99,27 +99,33 @@ function Editing() {
                             {/* Dynamic Buttons */}
                             <Box sx={{ mt: 3, display: "flex", flexDirection: "column", gap: 2 }}>
                                 {section.buttons.map((btn, idx) => (
-                                    <Button
+                                    <Box
                                         key={idx}
                                         variant="contained"
                                         sx={{
                                             background: "#F5F5F5",
                                             color: "black",
                                             borderRadius: "50px",
-                                            px: 2,
-                                            py: 2,
+                                            // padding:"16px 20px 16px 28px",
+                                            py:"16px",
+                                            paddingLeft:"28px",
+                                            paddingRight:"20px",
                                             display: "flex",
                                             alignItems: "center",
                                             justifyContent: "space-between",
-                                            width: "280px",
-                                            fontWeight: "500",
-                                            fontSize:"18px",
-                                            "&:hover": { background: "#E0E0E0" },
+                                            width: "320px",
+                                            fontWeight: 500,
+                                            fontSize:"21px",
+                                            cursor: "pointer",
+                                            transition: "all 0.2s ease-in-out",
+                                            "&:hover": {
+                                                paddingRight:"15px",
+                                                paddingLeft:"20px",
+                                            },
                                         }}
-                                        endIcon={btn.icon}
                                     >
-                                        {btn.label}
-                                    </Button>
+                                        {btn.label} {btn.icon}
+                                    </Box>
                                 ))}
                             </Box>
                         </Box>

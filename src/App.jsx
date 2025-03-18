@@ -23,7 +23,7 @@ function App() {
         <Shares/>
         <Inspirations/>
       <Footer />
-        <TemplatePage />
+        {/*<TemplatePage />*/}
       {/*  <Favorites/>*/}
     </>
   )
