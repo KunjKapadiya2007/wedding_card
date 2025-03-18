@@ -17,7 +17,7 @@ const GalleryPage = () => {
         onClick={() => setOpenDrawer(true)}
         sx={{
           mb: 3,
-          width: { xs: "100%", sm: "250px" }, 
+          width:'150px', 
           bgcolor: "#8D51E7", 
           fontWeight: "bold",
           fontSize: "16px",

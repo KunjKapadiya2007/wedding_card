@@ -10,20 +10,22 @@ import Footer from './components/global/Footer'
 import Navbar from './components/global/navbar'
 import Favorites from "./pages/myprofile/favorites.jsx";
 import TemplatePage from "./pages/templatePage.jsx";
+import Invitation from './pages/Invitation.jsx';
 
 function App() {
 
   return (
     <>
       <Navbar />
-      <Home/>
-        <Trendings/>
-        <Editings/>
-      <Celebrates/>
-        <Shares/>
-        <Inspirations/>
+      <Home />
+      <Trendings />
+      <Editings />
+      <Celebrates />
+      <Shares />
+      <Inspirations />
       <Footer />
-        <TemplatePage />
+      <TemplatePage />
+      <Invitation />
       {/*  <Favorites/>*/}
     </>
   )

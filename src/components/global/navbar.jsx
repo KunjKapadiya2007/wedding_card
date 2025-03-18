@@ -14,10 +14,11 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Container,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close"; // Import CloseIcon
+import CloseIcon from "@mui/icons-material/Close";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Logo from "../../assets/logo/logo.svg";
 
@@ -275,211 +276,62 @@ const menuItems = [
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [expandedAccordion, setExpandedAccordion] = useState(null); // Track open accordion
+  const [expandedAccordion, setExpandedAccordion] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const handleDrawerToggle = () => {
-    setDrawerOpen(!drawerOpen);
-  };
+  const handleDrawerToggle = () => setDrawerOpen(!drawerOpen);
 
   const handleAccordionChange = (panel) => (event, isExpanded) => {
-    setExpandedAccordion(isExpanded ? panel : null); // Open only one accordion at a time
+    setExpandedAccordion(isExpanded ? panel : null);
   };
 
-  const renderMenuItems = () => {
-    return menuItems.map((item, index) => (
+  const renderMenuItems = () => (
+    menuItems.map((item, index) => (
       <Box
         key={index}
         onMouseEnter={() => !isMobile && setOpenMenu(item.name)}
         onMouseLeave={() => !isMobile && setOpenMenu(null)}
-        sx={{ position: "relative" }}
       >
-        <Button
-          sx={{
-            color: "black",
-            fontWeight: "500",
-            textTransform: "none",
-            mx: "22px",
-            fontSize: "15px",
-          }}
-        >
-          {item.name}
-        </Button>
-
-        {/* Mega Menu - Full Width Row */}
-        {openMenu === item.name &&
-          item.subMenu &&
-          Object.keys(item.subMenu).length > 0 && (
-            <Paper
-              elevation={3}
-              sx={{
-                position: "fixed",
-                top: "64px", // Below the header
-                left: 0,
-                width: "100%",
-                height: "calc(100vh - 64px)", // Full screen height minus header height
-                backgroundColor: "white",
-                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-                padding: "20px",
-                zIndex: 1000,
-                overflowY: "auto", // Enable scrolling if content is too long
-              }}
-            >
-              <Grid
-                container
-                spacing={3}
-                sx={{
-                  maxWidth: "1200px",
-                  margin: "0 auto",
-                  textAlign: "left",
-                }}
-              >
-                {Object.entries(item.subMenu).map(
-                  ([category, items], subIndex) => (
-                    <Grid item xs={12} sm={6} md={2} key={subIndex}>
-                      <Typography
-                        sx={{
-                          fontWeight: "600",
-                          fontSize: "14px",
-                          letterSpacing: "0.7px",
-                          marginBottom: "10px",
-                        }}
-                      >
-                        {category}
-                      </Typography>
-                      {items.map((subItem, i) => (
-                        <Typography
-                          key={i}
-                          sx={{
-                            fontWeight: "500",
-                            letterSpacing: "0.7px",
-                            fontSize: "14px",
-                            padding: "5px 0",
-                            cursor: "pointer",
-                            color: "#20282d",
-                            "&:hover": {
-                              color: "#1BC47D",
-                            },
-                          }}
-                        >
-                          {subItem}
-                        </Typography>
-                      ))}
-                    </Grid>
-                  )
-                )}
-              </Grid>
-            </Paper>
-          )}
+        <Button sx={{ color: "#20282D", fontWeight: '600', fontSize: '13px', textTransform: 'capitalize', mx: 1 }}>{item.name}</Button>
+        {openMenu === item.name && item.subMenu && (
+          <Paper
+            elevation={3}
+            sx={{
+              position: "fixed",
+              top: "50px",
+              left: 0,
+              width: "100%",
+              maxHeight: "80vh",
+              backgroundColor: "#fff",
+              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+              padding: "20px",
+              zIndex: 1000,
+              overflowY: "auto",
+            }}
+          >
+            <Container>
+            <Grid container spacing={2} sx={{ maxWidth: "1300px", margin: "0 auto" }}>
+              {Object.entries(item.subMenu).map(([category, items], subIndex) => (
+                <Grid item key={subIndex} xs={12} sm={6} md={4} lg={2.4}>
+                  <Typography sx={{ fontSize:'14px',fontWeight:'600' }}>{category}</Typography>
+                  {items.map((subItem, i) => (
+                    <Typography key={i} sx={{ fontSize:'14px',fontWeight:'500',cursor: "pointer", mt: 1,"&:hover": { color: "#1bc47d" }  }}>
+                      {subItem}
+                    </Typography>
+                  ))}
+                </Grid>
+              ))}
+            </Grid>
+            </Container>
+          </Paper>
+        )}
       </Box>
-    ));
-  };
-
-  const renderDrawer = () => (
-    <Drawer
-      anchor="top"
-      open={drawerOpen}
-      onClose={handleDrawerToggle}
-      sx={{
-        "& .MuiDrawer-paper": {
-          width: "100%",
-          bgcolor: "#fff",
-          height: "100%",
-        },
-      }}
-    >
-      {/* Drawer Header with Logo and Close Button */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          p: 2,
-          borderBottom: "1px solid #ddd",
-        }}
-      >
-        {/* Logo */}
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{
-            color: "green",
-            fontWeight: "bold",
-            display: "flex",
-            alignItems: "center",
-            width: "146px",
-          }}
-        >
-          <Typography component={"img"} src={Logo} width={"100%"} />
-        </Typography>
-
-        {/* Close Button */}
-        <IconButton onClick={handleDrawerToggle}>
-          <CloseIcon />
-        </IconButton>
-      </Box>
-
-      {/* Drawer Content */}
-      {menuItems.map((item, index) => (
-        <Accordion
-          key={index}
-          expanded={expandedAccordion === `panel${index}`} // Control expanded state
-          onChange={handleAccordionChange(`panel${index}`)} // Handle open/close
-          elevation={0}
-          sx={{ width: "100%" }}
-        >
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography sx={{ fontWeight: "500" }}>{item.name}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            {Object.entries(item.subMenu).map(([category, items], subIndex) => (
-              <Box key={subIndex}>
-                <Typography
-                  sx={{
-                    fontWeight: "600",
-                    fontSize: "14px",
-                    letterSpacing: "0.7px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  {category}
-                </Typography>
-                {items.map((subItem, i) => (
-                  <Typography
-                    key={i}
-                    sx={{
-                      fontWeight: "500",
-                      letterSpacing: "0.7px",
-                      fontSize: "14px",
-                      padding: "5px 0",
-                      cursor: "pointer",
-                      color: "#20282d",
-                      "&:hover": {
-                        color: "#1BC47D",
-                      },
-                    }}
-                  >
-                    {subItem}
-                  </Typography>
-                ))}
-              </Box>
-            ))}
-          </AccordionDetails>
-        </Accordion>
-      ))}
-    </Drawer>
+    ))
   );
 
   return (
-    <AppBar
-      position="static"
-      sx={{
-        backgroundColor: "white",
-        boxShadow: 0,
-        borderBottom: "1px solid #ddd",
-      }}
-    >
+    <AppBar position="sticky" sx={{ backgroundColor: "white", boxShadow: 0, zIndex: 1100 }}>
       <Toolbar
         sx={{
           display: "flex",
@@ -501,27 +353,26 @@ const Navbar = () => {
         >
           <Typography component={"img"} src={Logo} width={"100%"} />
         </Typography>
-
         {/* Center - Navigation Links */}
         {!isMobile && (
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "start",
               width: "100%",
+              ml: { lg: 14, md: 1 }
             }}
           >
             {renderMenuItems()}
           </Box>
         )}
-
         {/* Right Side - Search Icon, Log in & Go Premium */}
         <Box
           sx={{
             display: "flex",
             alignItems: "center",
-            gap: "16px",
+            gap: "4px",
             position: "absolute",
             right: "20px",
           }}
@@ -539,9 +390,20 @@ const Navbar = () => {
               <SearchIcon />
             </IconButton>
           )}
-
           {isMobile ? (
             <IconButton onClick={handleDrawerToggle}>
+              {!isMobile && (
+                <IconButton
+                  sx={{
+                    color: "black",
+                    "&:hover": {
+                      backgroundColor: "#f2f2f2",
+                    },
+                  }}
+                >
+                  <SearchIcon />
+                </IconButton>
+              )}
               <MenuIcon />
             </IconButton>
           ) : (
@@ -585,8 +447,82 @@ const Navbar = () => {
         </Box>
       </Toolbar>
 
-      {/* Drawer for Mobile */}
-      {isMobile && renderDrawer()}
+      <Drawer anchor="top" open={drawerOpen} onClose={handleDrawerToggle}>
+        {/* Drawer Header */}
+        <Box sx={{ p: 2, display: "flex", justifyContent: "space-between" }}>
+          <Typography component="img" src={Logo} width={120} />
+          <IconButton onClick={handleDrawerToggle}>
+            <CloseIcon />
+          </IconButton>
+        </Box>
+
+        {/* Menu Items */}
+        {menuItems.map((item, index) => (
+          <Accordion
+            key={index}
+            expanded={expandedAccordion === `panel${index}`}
+            onChange={handleAccordionChange(`panel${index}`)}
+          >
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              {item.name}
+            </AccordionSummary>
+            <AccordionDetails>
+              <Grid container spacing={2}>
+                {Object.entries(item.subMenu).map(([category, items], subIndex) => (
+                  <Grid item key={subIndex} xs={12} sm={3} md={2}>
+                    <Typography sx={{ fontWeight: "bold" }}>{category}</Typography>
+                    {items.map((subItem, i) => (
+                      <Typography key={i} sx={{ mt: 1 }}>{subItem}</Typography>
+                    ))}
+                  </Grid>
+                ))}
+              </Grid>
+            </AccordionDetails>
+
+          </Accordion>
+        ))}
+
+        {/* LOGIN & GO PREMIUM BUTTONS IN DROPDOWN */}
+        <Box sx={{ textAlign: "center", mt: 3, p: 2 }}>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{
+              backgroundColor: "#f2f2f2",
+              color: "black",
+              borderRadius: "40px",
+              fontWeight: "600",
+              textTransform: "none",
+              boxShadow: "none",
+              mb: 1, // Add margin bottom for spacing
+              "&:hover": {
+                backgroundColor: "#e0e0e0",
+                boxShadow: "none",
+              },
+            }}
+          >
+            Log in
+          </Button>
+          <Button
+            fullWidth
+            variant="contained"
+            sx={{
+              backgroundColor: "#8D51E7",
+              color: "white",
+              borderRadius: "40px",
+              fontWeight: "600",
+              textTransform: "none",
+              boxShadow: "none",
+              "&:hover": {
+                backgroundColor: "#7a44d6",
+                boxShadow: "none",
+              },
+            }}
+          >
+            Go Premium
+          </Button>
+        </Box>
+      </Drawer>
     </AppBar>
   );
 };

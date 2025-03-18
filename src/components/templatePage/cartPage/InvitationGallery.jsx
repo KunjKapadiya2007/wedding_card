@@ -47,10 +47,10 @@ const InvitationGallery = () => {
 
   return (
     <Box sx={{ p: 4 }}>
-  <Grid container spacing={2}>
-    {invitationTemplates.map((template) => (
-      <Grid item xs={12} sm={6} md={3} lg={2.4} key={template.id}>
-      <Card
+      <Grid container spacing={2}>
+        {invitationTemplates.map((template) => (
+          <Grid item xs={12} sm={6} md={3} lg={2.4} key={template.id}>
+            <Card
               sx={{
                 borderRadius: 2,
                 position: "relative",
@@ -97,7 +97,7 @@ const InvitationGallery = () => {
                       fontSize: "14px",
                       opacity: 0,
                       transition: "opacity 0.3s, margin-left 0.3s",
-                      fontWeight:"bold"
+                      fontWeight: "bold"
                     }}
                   >
                     Premium
@@ -105,49 +105,59 @@ const InvitationGallery = () => {
                 </Box>
               )}
 
-          {/* Full-Width Image */}
-          <CardMedia
-            component="img"
-            sx={{
-              borderBottom:'1px solid #000',
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              transition: "transform 0.3s",
-            }}
-            image={template.image}
-            alt={template.title}
-          />
+              {/* Full-Width Image */}
+              <CardMedia
+                component="img"
+                sx={{
+                  borderBottom: '1px solid #000',
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  transition: "transform 0.3s",
+                }}
+                image={template.image}
+                alt={template.title}
+              />
 
-          <CardContent>
-            <Typography variant="body1" fontWeight="bold" color="#63696C"  >
-              {template.title}
-            </Typography>
-
-            {/* Color Options */}
-            <Box sx={{ display: "flex", mt: 1, gap: 1 }}>
-              {template.colors.map((color, index) => (
-                <Box
-                  key={index}
+              <CardContent>
+                <Typography
+                  variant="body1"
+                  fontWeight="bold"
+                  color="#63696C"
                   sx={{
-                    bgcolor: color,
-                    width: 24,
-                    height: 24,
-                    border: selectedColor[template.id] === color ? "2px solid black" : "1px solid #ccc",
-                    cursor: "pointer",
-                    transition: "0.2s",
-                    borderRadius:'50px'
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
                   }}
-                  onClick={() => setSelectedColor({ ...selectedColor, [template.id]: color })}
-                />
-              ))}
-            </Box>
-          </CardContent>
-        </Card>
+                >
+                  {template.title}
+                </Typography>
+
+
+                {/* Color Options */}
+                <Box sx={{ display: "flex", mt: 1, gap: 1 }}>
+                  {template.colors.map((color, index) => (
+                    <Box
+                      key={index}
+                      sx={{
+                        bgcolor: color,
+                        width: 24,
+                        height: 24,
+                        border: selectedColor[template.id] === color ? "2px solid black" : "1px solid #ccc",
+                        cursor: "pointer",
+                        transition: "0.2s",
+                        borderRadius: '50px'
+                      }}
+                      onClick={() => setSelectedColor({ ...selectedColor, [template.id]: color })}
+                    />
+                  ))}
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
       </Grid>
-    ))}
-  </Grid>
-</Box>
+    </Box>
 
   );
 };
