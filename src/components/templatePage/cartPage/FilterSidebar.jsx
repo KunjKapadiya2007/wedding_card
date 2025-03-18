@@ -116,6 +116,7 @@ import TuneIcon from "@mui/icons-material/Tune";
 import CloseIcon from "@mui/icons-material/Close";
 import { Grid, Typography, Box, Drawer, Button } from "@mui/material";
 
+
 const priceOptions = ["Free", "Premium"];
 
 const colorOptions = [
@@ -147,6 +148,7 @@ const FilterSidebar = () => {
       <Box sx={{ width: 400, p: 2 }}>
         {/* price Section */}
         <Box sx={{ borderBottom: "1px solid #ccc", py: 2 }}>
+          <Box sx={{display:"flex",justifyContent:"end"}}> <CloseIcon/> </Box>
           <Typography sx={{ fontWeight: "bold", mb: 1 }}>Price</Typography>
           <Grid container spacing={1}>
             {priceOptions.map((price, index) => (
@@ -155,10 +157,10 @@ const FilterSidebar = () => {
                   sx={{
                     textAlign: "center",
                     border: "1px solid #000",
-                    padding: "6px 0",
-                    borderRadius: "4px",
+                    padding: "12px 0",
+                    borderRadius: "30px",
                     cursor: "pointer",
-                    "&:hover": { bgcolor: "#000", color: "#fff" },
+                    "&:hover": { bgcolor: "#E9E9EA", color: "#000" },
                   }}
                 >
                   {price}
@@ -206,10 +208,10 @@ const FilterSidebar = () => {
                   sx={{
                     textAlign: "center",
                     border: "1px solid #000",
-                    padding: "6px 0",
-                    borderRadius: "4px",
+                    padding: "12px 0",
+                    borderRadius: "30px",
                     cursor: "pointer",
-                    "&:hover": { bgcolor: "#000", color: "#fff" },
+                    "&:hover": { bgcolor: "#E9E9EA", color: "#000" },
                   }}
                 >
                   {photo}
@@ -228,10 +230,10 @@ const FilterSidebar = () => {
                   sx={{
                     textAlign: "center",
                     border: "1px solid #000",
-                    padding: "6px 0",
-                    borderRadius: "4px",
+                    padding: "12px 0",
+                    borderRadius: "30px",
                     cursor: "pointer",
-                    "&:hover": { bgcolor: "#000", color: "#fff" },
+                    "&:hover": { bgcolor: "#E9E9EA", color: "#000" },
                   }}
                 >
                   {item}
@@ -250,10 +252,10 @@ const FilterSidebar = () => {
                   sx={{
                     textAlign: "center",
                     border: "1px solid #000",
-                    padding: "6px 0",
-                    borderRadius: "4px",
+                    padding: "12px 0",
+                    borderRadius: "30px",
                     cursor: "pointer",
-                    "&:hover": { bgcolor: "#000", color: "#fff" },
+                    "&:hover": { bgcolor: "#E9E9EA", color: "#000" },
                   }}
                 >
                   {item}
