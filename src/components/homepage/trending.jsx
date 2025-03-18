@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import Img1 from "../../assets/Home/Img2.svg"; // Background for cards
-import Img2 from "../../assets/Home/Img4.png"; // Card 1
-import Img3 from "../../assets/Home/Img5.png"; // Card 2
-import StarIcon from "@mui/icons-material/StarBorder"; // Favorite Icon
+import Img1 from "../../assets/Home/Img2.svg";
+import Img2 from "../../assets/Home/Img4.png";
+import Img3 from "../../assets/Home/Img5.png";
+import StarIcon from "@mui/icons-material/StarBorder";
 
 function Trending() {
     const trendingItems = [
@@ -22,9 +22,10 @@ function Trending() {
             <Box
                 sx={{
                     display: "flex",
-                    justifyContent: "center", // ✅ Centering items
-                    gap: "20px", // ✅ Reduced space between cards
-                    flexWrap: "wrap", // ✅ Ensures responsiveness
+                    justifyContent: "center",
+                    gap: "20px",
+                    flexWrap: "wrap",
+
                 }}
             >
                 {trendingItems.map((item, index) => (
@@ -36,17 +37,21 @@ function Trending() {
                             backgroundPosition: "center",
                             borderRadius: "20px",
                             pt: 2,
-                            height: "420px",
+                            height: "480px",
                             display: "flex",
                             flexDirection: "column",
                             alignItems: "center",
                             width: "100%",
                             maxWidth: "440px",
                             position: "relative",
+                            objectFit: "cover",
+                            "&:hover .topimage": {
+                                transform: "scale(1.1)",
+                            }
                         }}
                     >
                         {/* Image */}
-                        <Box
+                        <Box className={"topimage"}
                             component="img"
                             src={item.img}
                             alt={item.label}
@@ -54,8 +59,12 @@ function Trending() {
                                 width: "90%",
                                 maxWidth: "250px",
                                 borderRadius: "12px",
-                                mt: "10px",
+                                mt: "30px",
                                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+                                transition: "all 0.4s ease-in-out",
+                                "&:hover": {
+                                    transform: "scale(1.1)",
+                                }
                             }}
                         />
 
@@ -76,7 +85,7 @@ function Trending() {
                                 zIndex: 999,
                             }}
                         >
-                            <Box sx={{ fontSize: "20px", fontWeight: "500" }}>
+                            <Box sx={{ fontSize: "21px", fontWeight: "500" }}>
                                 {item.label}
                             </Box>
                             <Box

@@ -8,19 +8,21 @@ import Inspiration from "./components/homepage/inspiration.jsx";
 import Inspirations from "./pages/HomePage/inspirations.jsx";
 import Footer from './components/global/Footer'
 import Navbar from './components/global/navbar'
+import Favorites from "./pages/myprofile/favorites.jsx";
 
 function App() {
 
   return (
     <>
       <Navbar />
-      <Footer />
       <Home/>
         <Trendings/>
         <Editings/>
       <Celebrates/>
         <Shares/>
         <Inspirations/>
+      <Footer />
+      {/*  <Favorites/>*/}
     </>
   )
 }
